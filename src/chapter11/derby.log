@@ -1,0 +1,14 @@
+Sun May 04 23:35:58 BRT 2014 : Apache Derby Network Server - 10.10.1.3 - (1557168) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Sun May 04 23:53:40 BRT 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.3 - (1557168): instance a816c00e-0145-ca3c-d5cd-00004f619ccb 
+on database directory C:\Users\Alessandro\IdeaProjects\Java7Recipes\src\chapter11\java7recipes with class loader sun.misc.Launcher$AppClassLoader@55f96302 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_05/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_05-b13
+user.dir=C:\Users\Alessandro\IdeaProjects\Java7Recipes\src\chapter11
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Users\Alessandro\IdeaProjects\Java7Recipes\src\chapter11
+Database Class Loader started - derby.database.classpath=''

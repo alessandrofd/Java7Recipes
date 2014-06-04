@@ -1,0 +1,57 @@
+Chapter 11 - Working with Databases
+
+Almost any nontrivial application contains a database of some sort. Some applications use in-memory databases, while
+others use traditional relational database management systems (RDBMSs). Whatever the case, it is essential that every
+Java developer have some skills working with databases. Over the years, the Java Database Connectivity (JDBC) API has
+evolved quite a bit, and with Java SE 7 there are a couple of major advancements.
+
+This chapter will cover the basics of using JDBC for working with databases. You will learn how to perform all the
+standard database operations, as well as some advanced techniques for manipulating data. You'll also learn how you can
+help to create secure database applications and how to save some time on development using some of the latest advancements
+in the API. In the end, you will be able to develop Java applications that can work with traditional RDBMSs such as
+Oracle database and MySQL.
+
+11-1. Connecting to a Database
+    Problem: You want to create a connection to a database from within a desktop Java application.
+    Solution #1: Use a JDBC Connection object. Do this by creating a new connection object, and then load the driver
+        that you need to use for your particular database vendor. Once the connection object is ready, call its
+        getConnection() method.
+    Solution #2: Use a DataSource to create a connection pool. The DataSource object must have been properly implemented
+        and deployed to an application server environment. After a DataSource object has been implemented and deployed,
+        it can be used by an application to obtain a connection to a database.
+
+11-2. Handling Connection and SQL Exceptions
+    Problem: A database activity in your application has thrown an exception. You need to handle that exception so that
+        your application does not crash.
+    Solution: Use a try-catch block to capture and handle any SQL exceptions that are throw by your JDBC connections or
+        SQL queries.
+
+11-3. Querying a Database and Retrieving Results
+    Problem: A process in your application needs to query a database table for data.
+    Solution: Obtain a JDBC connection using one of the techniques as described in Recipe 11-1; then use the
+        java.sql.Connection object to create a Statement object. A java.sql.Statement object has the executeQuery()
+        method, which parses a String of text and uses it to query a database. Once you've executed the query, you can
+        retrieve the results of the query into a ResultSet object
+
+11-4. Performing CRUD Operations
+    Problem: You need to have the ability to perform standard database operations within you application. That is, you
+        need the ability to create, retrieve, update, and delete (CRUD) database records.
+    Solution: Create a Connection object and obtain a database connection using one of the solutions provided in Receipe
+        11-1; then perform the CRUD operation using a java.sql.Statement object that is obtained from the
+        java.sql.Connection object.
+
+11-5. Simplifying Connection Management
+    Problem: Your application requires the use of a database. In order to work with the database, you need to open a
+        connection. Rather than code the logic to open a database connection every time you need to access the database,
+        you'd like to uses a single class to perform that task.
+    Solution: Write a class to handle all the connection management within your application. Doing so will allow you to
+        call that class in order to obtain a connection, rather than setting up a Connection object each time you need
+        access to the database. Perform the following steps to set up a connection management environment for your
+        JDBC application:
+            1. Create a class named CreateConnection.java that will encapsulate all the connection logic for your
+                application.
+            2. Create a properties file to store your connection information. Place the file somewhere in your CLASSPATH
+                so that CreateConnection can load it.
+            3. Use the CreateConnection class to obtain your database connections.
+
+11-6.

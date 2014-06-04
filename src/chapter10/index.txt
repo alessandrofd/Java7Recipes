@@ -1,0 +1,79 @@
+Chapter 10 - Unicode, Internationalization and Currency Codes
+
+The Java platform provides a rich set of internationalization features to help you create applications that can be used
+across the world. The platform provides the means to localize the applications, format the dates and numbers in a
+variety of culturally-sensitive formats, and display characters used in dozens of writing systems.
+
+This chapter describes only some of the most frequent and common tasks that programmers must perform when developing
+internationalized applications. Because Java 7 adds new features around its abstraction of languages and regions, this
+chapter describes some of the new ways you might use the Locale class.
+
+10.1. Converting Unicode Characters to Digits
+    Problem: You want to convert a Unicode digit character to its respective integer value. For example, you have a
+        string containing the Thai digit for the value 8 and you wish to generate an integer with that value.
+    Solution: The java.lang.Character class has several static methods to convert characters to integer digit values:
+        * public static int digit(char ch, int radix)
+        * public static int digit(int ch, int radix)
+
+10.2. Creating and Working with Locales
+    Problem: You want to display numbers, dates, and time in a user-friendly way that conforms to the language and
+        cultural expectations of your customers.
+    Solution: The display format for numbers, dates and time varies across the world and depends upon your user's
+        language and cultural region. Additionally, text collation rules vary by language. The java.util.Local class
+        represents a specific language and region of the world. By determining and using your customer's locale, you
+        can apply that locale to a variety of format classes that create user visible data in expected forms. Classes
+        that use Locale instances to modify their behavior for a particular language or region are called locale-sensitive
+        classes. You can learn more about locale-sensitive classes in the "Numbers and Dates" chapter. That chapter shows
+        you how to use Locale instances in the NumberFormat and DateFormat classes. In this recipe, however, you will
+        learn options for creating these Locale instances.
+
+        Create a Locale instance in any of the following ways:
+            * Use the Locale.Builder class to configure and build a Locale object.
+            * Use the static Locale.forLanguageTag() method.
+            * Use the Locale constructors to create an object.
+            * Use preconfigured static Locale objects.
+
+        The Java 7 Locale.Builder class has setter methods that allow you to create locales that can be transformed into
+        well-formed Best Common Practices (BCP) 47 language tags.
+
+10.3. Setting the Default Locale
+    Problem: You want to set the default locale for all locale-sensitive classes.
+    Solution: Use the Locale.setDefault() method to set a Locate instance that all locale-sensitive classes will use by
+        default. This method is overloaded with two forms:
+        * Locale.setDefault(Locale aLocale)
+        * Locale.setDefault(Locale.Category c, Locale aLocale)
+
+10.4. Searching Unicode with Regular Expressions
+    Problem: You want to find or match Unicode characters in a String. You want to do that using Regular Expression
+        syntax.
+    Solution #1: The easiest way to find or match characters is to use the String class itself. String instances store
+        Unicode character sequences and provide relatively simple operations for finding, replacing and tokenizing
+        characters using regular expressions.
+
+        To determine whether a String matches a regular expression, use the matches() method. The matches() method
+        returns true if the entire string exactly matches the regular expression.
+
+    Solution #2: When the simple String methods aren't sufficient, you can use the more powerful java.util.regex package
+        to work with regular expressions. Create a regular expression with the Pattern class. A Matcher works on a String
+        instance using the pattern. All Matcher operations perform their functions using Pattern and String instances
+
+10.5. Overriding the Default Currency
+    Problem: You want to display a number value using a currency that is not associated with the default locale.
+    Solution: Take control of what currency is printed with a formatted currency value by explicitly setting the currency
+        used in a NumberFormat instance.
+
+10.6. Converting Byte Arrays to and from Strings
+    Problem: You need to convert characters in a byte array from a legacy character set to an Unicode String.
+    Solution: Convert legacy character encodings from a byte array to an Unidcode String using the String class.
+
+10.7. Converting Character Streams and Buffers
+    Problem: You need to convert large blocks of Unicode character text to and from an arbitrary byte-oriented encoding.
+        Large blocks of text may come from streams or files.
+    Solution #1: Use the jave.io.InputStreamReader to decode a byte stream to a Unicode characters. Use
+        java.io.OutputStreamWriter to encode Unicode characters to a byte stream.
+
+    Solution #2: Use a java.nio.charset.CharsetEncoder and java.nio.charset.CharsetDecoder to convert Unicode character
+        buffers to and from byte buffers. Retrieve an encoder and decoder from a Charset instance with the newEncoder()
+        or newDecoder() method. Then use the encoder's encode() method to create byte buffers. Use the decoder's decode()
+        method to create character buffers.
+

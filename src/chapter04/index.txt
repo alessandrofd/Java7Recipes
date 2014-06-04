@@ -1,0 +1,53 @@
+4-1. Defining a Fixed Set of Related Constants
+    Problem: You need a type that can represent a fixed set of related constants.
+    Solution: Use an enun type.
+
+4-2. Designing Intelligent Constants
+    Problem: You need a type that can represent a fixed set of related constants, and you would like to build in some
+        state and behavior (logic) around your constants in an object-oriented way.
+    Solution: Use an enum type and take advantage of the fact that enum types are full-fledged Java classes. An enum type
+        can have state and behavior just like any other class, and the enum constants, themselves being instances of the
+        enum type, inherit this stat and behavior.
+    Source Code: FieldType.java
+
+4-3. Executing a Code Based on a Specified Value
+    Problem: You want to execute different blocks of code based on the value of a singular expression.
+    Solution: Consider using a switch statement if your variable or expression result is one of the allowed switch types
+        and you want to test for equality against a type compatible constant.
+    Source Code: RockPaperScissors.java, SwitchTypeChecker.java
+
+4-4. Working with Fixed Sized Arrays
+    Problem: You need a simple data structure that can store a fixed (and possibly large) amount of same-typed data and
+        provide for fast sequential access.
+    Solution: Consider using an array. While Java provides more sophisticated and flexible Collection type, the array
+        type can be a useful data structure for some types of applications.
+    Source Code: GradeAnalyzer.java
+
+4-5. Using Generic Types
+    Problem: You are a new Java developer and you need to come up to speed quickly on generics, or you are an experienced
+        Java developer and you want to learn about a new Java 7 feature that will make your generics programming easier.
+    Solution: You'll likely first encounter generic types when using the interfaces and classes that are part of the Java
+        Collections Framework. The Collections Framework makes heavy use of Java generics. All collection types are
+        parameterized to allow you to specify, at the time of instantiation, the type of elements the collection can hold.
+    Source Code: GenericsDemo.java
+
+4-6. Working with Dynamic Arrays
+    Problem: You need a flexible data structure that can store a variable amount of data and that allows for easy
+        insertion and deletion of data.
+    Solution: Consider using an ArrayList.
+    Source Code: StockScreener.java
+
+4-7. Making Your Objects Iterable
+    Problem: You have created a custom collection-based class that wraps (instead of extends) the underlying collection
+        type. Without exposing the internal implementation details of your class, you would like objects of your class
+        to be iterable, specially with the use of a foreach statement.
+    Solution: Have your class extend the Iterable<T> interface, where T is the element type of the collection to be
+        iterated. Implement the iterator() method to return the Iterator<T> object from this collection.
+    Source Code: StockPortfolio.java, Stock.java
+
+4-8. Iterating Over a Map
+    Problem: You are using one of the Map classes, such as HashMap or TreeMap, and you need to iterate over the keys,
+        values, or both. You may also want to remove elements from the map while you are iterating over it.
+    Solution: There are multiple ways to iterate over a Map. The method you chose should depend on what portions of the
+        map you need to access and whether you need to remove elements from the map while iterating.
+    Source Code: StockPortfolio1.java

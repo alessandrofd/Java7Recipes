@@ -1,0 +1,102 @@
+Chapter 7 - Object-Oriented Java
+
+Programming languages have changed a great deal since the first days of application development. Back in the day,
+procedural languages were state-of-the-art; as a matter of fact, there are still thousands of COBOL applications in use
+today. As time went on, coding became more efficient; and reuse, encapsulation, abstraction, and other object-oriented
+characteristics became fundamental keys to application development. As languages evolved, they began to incorporate the
+idea of using objects within programs. The Lisp language introduced some object-oriented techniques as early as the
+1970s, but tue object-oriented programming did not take off in full blast until the 1990s.
+
+Object-oriented programs consist of many different pieces of code that all work together in unison. Rather than having
+a long list of statements and command, an object-oriented philosophy is to break functionality up into different
+objects. Programming techniques such as using methods to encapsulate functionality and copying the functionality of
+another class began to catch on as people noticed that object orientation equated to productivity.
+
+In this chapter, we will touch upon some of the key object-oriented features of the Java language. From the basic
+recipes such as learning access modifiers, to the advanced recipes such as inner classes, this chapter contains recipes
+that will help you understand Java's object oriented methodologies.
+
+7-1. Controlling Access to Members of a Class
+    Problem: You want to create some class members that are not accessible from any other class.
+    Solution: Create private instance members rather than making them available to other classes (public or protected).
+
+7-2. Making Private Fields Accessible
+    Problem: You would like to create private instance members so that outside classes cannot access them directly.
+        However, you would also like to make those private members accessible via a controlled method.
+    Solution: Encapsulate the private fields by making getters and setters to access them.
+
+7-3. Creating a Class That Can Have Only One Instance
+    Problem: You would like to create a class for which only one instance can exist int the entire application, so that
+        all application users interact with the same instance of that class.
+    Solution #1: Create the class using the Singleton pattern. A class implementing the Singleton pattern allows for
+        only one instance of the class and provides a single point of access to the instance.
+    Solution #2: Create an enum and declare a single element named INSTANCE within it. Then declare other fields
+        within the enum that you can use to store the values that are required for use by your application.
+
+7-4.Generating Instances of a Class
+    Problem: In one of your applications you would like to provide the ability to generate instances of an object on the
+        fly. Each instance of the object should be ready to use, and the creator should not need to know about the
+        details of the object creation.
+    Solution: Make use of the factory method pattern to generate instances of the class while abstracting the creation
+        process from the creator. Creating a factory will enable new instances of a class to be returned upon invocation.
+
+7-5. Creating Reusable Objects
+    Problem: You would like to generate an object that could be used to represent something within your application. For
+        instance, suppose that you are creating an application that will be used for generating statistics and league
+        information for different sports teams.
+    Solution: Create a JavaBean that can be used to represent the object that you want to create. JavaBean objects
+        provide the capability for object fields to be declared private, and they also allow the attributes to be read
+        and updated so that an object can be passed around and used within an application.
+
+7-6. Defining an Interface for a Class
+    Problem: You would like to an abstract type that can be used as a common template to expose the methods and
+        constants that a class implements.
+    Solution: Generate a Java interface to declare each of the constant fields and methods that a class must implement.
+        Such an interface can them be implemented by a class, and used to represent an object type.
+
+7-7. Constructing Instances of the Same Class with Different Values
+    Problem: Your application requires the ability to construct instances of the same object, but each object instance
+        needs to contain different values; thereby creating different types of the same object.
+    Solution: Make use of the Builder pattern in order to build different types of the same object using a step-by-step
+        procedure. For instance, suppose you are interested in creating the different teams of a sport league. Each of
+        the team need to contain the same attributes, but the values for those attributes vary by team. So you create
+        many objects of the same type, but each of the objects is unique.
+
+7-8. Interacting with a Class via Interfaces
+    Problem: You create a class that implements an interface, or class type. You would like to interact with the methods
+        of that class by working with the interface rather than working directly with the class.
+    Solution: Declare a variable of the same type as an interface. You can then assign classes that implement the
+        interface to that variable and call upon the methods declared upon the interface to perform work.
+
+7-9. Making a Class Cloneable
+    Problem: You would like to enable a class to be cloned by another class.
+    Solution: Implement the Cloneable interface within the class that you want to clone; then call the object's clone
+        method to make a copy of it.
+
+7-10. Comparing Objects
+    Problem: Your application requires the capability to compare two or more objects to see whether they are the same.
+    Solution #1: To determine whether the two object references point to the same object, make use of the == and !=
+        operators.
+    Solution #2: To determine whether the tow objects contain the same values, use the equals() method. The object
+        being compared must implement equals() and hashCode() in order for this solution to work properly.
+
+7-11. Extending the Functionality of a Class
+    Problem: One of your applications contains a class that you would like to use as a base for another class. You want
+        your new class to contain the same functionality of this base class, but also include additional functionality.
+    Solution: Extend the functionality of the base class by using the extends keyword followed by the name of the class
+        that you would like to extend.
+
+7.12. Defining a Class Template
+    Problem: You would like to define a template that can be used to generate objects containing similar functionality.
+    Solution: Define an abstract class that contains fields and functionality that can be used in other classes. The
+        abstract class can also include unimplemented methods, called "abstract methods", which will need to be
+        implemented by a subclass of the abstract class.
+
+7.13. Increasing Class Encapsulation
+    Problem: One of your classes requires the use of another class's functionality. Furthermore, no other class requires
+        the use of that same functionality. Rather than creating a separate class that included this additional
+        functionality, you'd like to generate an implementation than can only be used by the class that needs it.
+    Solution: Create an inner class that requires its functionality.
+
+
+

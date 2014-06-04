@@ -1,0 +1,62 @@
+2-1. Obtaining a Subsection of a String
+    Problem: You would like to retrieve a portion of a string.
+    Solution: Use the substring() method to obtain a portion of the String between two different positions.
+    Source Code: Recipe2_1.java
+
+2-2. Comparing Strings
+    Problem: An application that you are writing needs to have the ability to compare two or more String values.
+    Solution: Use the built-in equals(), equalsIgnoreCase(), compareTo(), and compareToIgnoreCase() methods to compare
+        the values contained withing the Strings.
+
+2-3. Trimming Whitespace
+    Problem: One of the Strings you are working with contains some whitespace on either end. You would like to get rid
+        of that whitespace.
+    Solution: Use the String trim() method to eliminate the whitespace.
+
+2-4. Changing the Case of a String
+    Problem: A portion of you application contains case-sensitive String values. You would like to change all the Strings
+        to uppercase before they are processed in order to avoid any case sensitivity issues down the road.
+    Solution: Make use of the toUpperCase() and toLowerCase() methods. The String object provides these two helper methods
+        to assist in performing a case change for all of the characters in a given String.
+
+2-5. Concatenating Strings
+    Problem: There are various Strings that you want to combine into one.
+    Solution #1: If you want to concatenate String onto the end of each other, use the concat() method.
+    Solution #2: Use the concatenation operator to combine the Strings in a shorthand manner.
+    Solution #3: Use StringBuilder or StringBuffer to combine the Strings.
+
+2-6. Converting String to Numeric Values
+    Problem:  You would like to have the ability to convert any numeric values that are stored in Strings into Integers.
+    Solution #1: Use the Integer.valueOf() helper method to convert Strings into int data types.
+    Solution #2: Use the Integer.parseInt() helper method to convert Strings into int data types.
+
+2-7. Iterating over the characters of a String
+    Problem: You want to iterate over the characters within a String of text so you can manipulate it at the character
+        level.
+    Solution: Use a combination of String helper methods to gain access to the String at the character level. If you use
+        a String helper method within the context of a loop, you can easily traverse a String by character.
+
+2-8. Finding Text Matches
+    Problem: You would like to search a body of text for a particular sequence of characters.
+    Solution #1: Make use of regular expressions and the String matches() helper method to determine how many matches
+        exist. To do this, simply pass a String representing a regular expression to the matches() method against any
+        String you are trying to match. In doing so, the String will be compared with the String that matches() is being
+        called upon. Once evaluated, matches() will yield a Boolean result, indicating whether it is a match or not.
+    Solution #2: Use the regular expression Pattern and Matcher classes for a better performing and more versatile
+        matching solution than the String matches() method. Although the matches() method will get the job done most of
+        the time, there are some occasions in which you will require a more flexible way of matching. Using this solution
+        is a three-step process:
+            1. Compile a pattern into a Pattern object;
+            2. Construct a Matcher object using the matcher() method on the Pattern; and
+            3. Call the matches() method on the Matcher.
+
+2-9. Replacing All Text Matches
+    Problem: You have searched a body of text for a particular sequence of characters, and you are interested in replacing
+        all matches with another String value.
+    Solution: Use a regular expression pattern to obtain a Matcher object; the use the Matcher object's replaceAll()
+        method to replace all matches with another String value.
+
+2-10. Determining Whether a File Name Ends with a Given String
+    Problem: You are reading a file from the server and you need to determine what type of file it is in order to read
+        it properly.
+    Solution: Determine the suffix of the file by using the endsWith() method on a given file name.

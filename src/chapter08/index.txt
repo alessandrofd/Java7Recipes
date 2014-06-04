@@ -1,0 +1,78 @@
+8-1. Starting a Background Task
+    Problem: You need a task that needs to be run outside of the main thread.
+    Solution: Implement a Runnable interface and star a new Thread.
+    Source Code: Recipe8_1.java
+
+8-2. Updating (and Iterating) a Map
+    Problem: You need to update a Map object from multiple threads, and you want to make sure the update doesn't break
+        the contents of the Map object and that the Map object is always in consistent state. You also want to traverse
+        (look at) the content of the Map object while other threads are updating the Map object.
+    Solution: Use a ConcurrentMap to update Map entries. The following example creates 1,000 threads. Each thread then
+        tries to modify the Map at the same time. The main thread then waits for a second, and proceeds to iterate through
+        the Map (even when other threads are still modifying the Map):
+    Source Code: Recipe8_2.java
+
+8-3. Inserting a Key into a Map Only If the Key is not Already Present
+    Problem: You need to put a key/value pain into a Map only if the key is not present, and the Map is being constantly
+        updated by other threads. You need to check for the key's presence first, and you need assurance that some other
+        thread doesn't insert the same key after you check and before you insert yourself.
+    Solution: Use the ConcurrentMap.putIfAbsent() method, you can be assured that either the map was modified atomically
+        or not
+    Source Code: Recipe8_3.java
+
+8-4. Iterating through a Changing Collection.
+    Problem: You need to iterate through each element in a collection, but the collection is always being changed by
+        other threads.
+    Solution 1: By using a CopyOnWriteArrayList you can safely iterate through the collection without worrying about
+        concurrency
+    Solution 2: Using a synchronizedList() allows to atomically change the collection. Also, a synchronizedList()
+        provides a way to synchronize safely on the list while iterating through it (which is done in the for loop).
+    Source Code: Recipe8_4.java (for both solutions).
+
+8-5. Coordinating Different Collections
+    Problem: You need to modify different but related collections at the same time and want to be sure that no other
+        thread see these structures until they are done being modified.
+    Solution 1: By synchronizing on the principal collection, you can guarantee that collection can be updated at the
+        same time.
+    Source Code: Recipe8_5_1.java
+
+    Solution 2: Using a reentrant lock, you can prevent multiple threads accessing the same critical area of the code.
+    Source Code: Recipe8_5_2.java
+
+8-6. Splitting Work into Separate Threads
+    Problem: You have work that can be split into separate threads and want to maximize the use of available CPU resources.
+    Solution: Use a ThreadpoolExecutor instance, which allows you to break the task into discrete units.
+    Source Code: Recipe8_6.java
+
+8-7. Coordinating Threads
+    Problem: Your application requires that two or more threads be coordinated to work in unison.
+    Solution 1: With wait/notify for thread synchronization you can coordinate threads.
+    Source Code: Recipe8_7_1.java
+
+    Solution 2: With a CountDownLatch object, you can control when the main thread continues.
+    Source Code: Recipe8_7_2.java
+
+    Solution 3: By using Thread.join(), you can wait for a thread to finish executing.
+    Source Code: Recipe8_7_3.java
+
+8-8. Creating Threadsafe Objects
+    Problem: You need to create an object that is threadsafe because it will be accessed by multiple threads.
+    Solution 1: Use synchronized getters and setters, and protect critical regions that change state.
+    Solution 2: Create an immutable object (an object that, once created, doesn't change its state).
+    Source Code: Recipe8_8.java (for both solutions)
+
+8-9. Implementing Threadsafe Counters
+    Problem: You need a counter that is threadsafe so that it can be incremented by different execution threads.
+    Solution: By using the inherently threadsafe Atomic objects, you can create a counter that guarantees thread safety
+        and has an optimized synchronization strategy.
+    Source Code: Recipe8_9.java
+
+8-10. Breaking Down Tasks into Discrete Units of Work
+    Problem: You have an algorithm that benefits from using a divide-and-conquer strategy, which refers to the ability
+        of breaking down a unit of work into two separate subunits and them piecing together the results from these sub-
+        units. The subunits can then be broken down into more subunits of work until reaching a point where the work is
+        small enough to just be executed. By breaking down the unit of work into subunits, you can take advantage of the
+        multicore nature of today's processors with minimum pain.
+    Solution: The new Fork/Join framework in Java 7 makes applying the divide-and-conquer strategy straightforward.
+    Source Code: Recipe8_10.java
+

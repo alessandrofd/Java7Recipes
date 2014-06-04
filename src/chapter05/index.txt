@@ -1,0 +1,66 @@
+5-1. Serializing Java Objects
+    Problem: You need to serialize a class (save the contents of a class) so that you can restore it at a later time.
+    Solution: Java implements a built-in serialization mechanism. You access that mechanism through the ObjectOutputStream
+        class.
+
+5-2. Serializing Java Objects More Efficiently
+    Problem: You want to serialize a class, but want to make the output more efficient, or smaller in size, than that generated
+        by the built-in serialization mechanism.
+    Solution: By making the object implement the Externalizable interface, one instructs the Java Virtual Machine to use
+        a custom serialization/deserialization mechanism, as provided by the readExternal/writeExternal methods.
+
+5-3. Serializing Java Objects as XML
+    Problem: While you love the Serialization framework, you want to create something that is at least cross-language-
+        compatible (or human readable). You would like to save and load your objects using XML.
+    Solution: In this example, one uses the XMLEncoder object to encode our own Settings object, which contains program
+        setting information and writes it to the settings.xml file. The XMLDecoder object takes the settings.xml file and
+        reads it as a stream, decoding the Settings object.
+
+5-5. Obtaining the Java Execution Path
+    Problem: You want to get the path where the Java program is running.
+    Solution: Invoke the System class's getProperty method.
+
+5-6. Copying a File
+    Problem: You need to copy a file from one folder to another.
+    Solution: From the default FileSystem, you create the "to" and "from" paths where the files/folders exist and then
+        use the Files.copy static method to copy files between created paths.
+
+5-7. Moving a File
+    Problem: You need to move a file instead of just copying it around.
+    Solution: As in Solution 5-6, you use a default FileSystem to create the "to" and "from" paths, and invoke the
+        Files.move static method.
+
+5-8. Creating a Directory
+    Problem: You need to create a directory from your Java Application.
+    Solution: By using the default FileSystem, you instantiate a path pointing to the new directory; then the
+        Files.createDirectory static method creates the directory specified in the path.
+
+5-9. Iterating over Files in a Directory
+    Problem: You need to scan files from a directory. There are possibly subdirectories with more files. You want to
+        include those in your scan.
+    Solution: Use the NIO.2, create a FileVisitor and visit the folder.
+
+5-10. Querying (and Setting) File Metadata
+    Problem: You need to get information about a particular file, such as file size, whether it's a directory, etc. Also,
+        you might want to mark a file as Archived in the Windows operating system or grant specific POSIX file permissions
+        in the Linux operating system.
+    Solution: Using Java NIO.2 you can get a lot more information on a file/directory than you could with the regular
+        NIO.
+
+5-11. Monitoring a Directory for Changes.
+    Problem: You need to keep track when a directory's content has changed (for example, a file was added, deleted
+        or changed) and act upon those changes.
+    Solution: By using WatchService, you can subscribe to be notified on events happening on that folder.
+
+5-12. Reading Property Files
+    Problem: You need to create some settings for your program that needs to be editable either with text or
+        programmatically.
+    Solution: Using the Properties object we load properties stored in the properties.conf file. For certain properties,
+        is not present in the file, we use default values. Toward the end of the example, we rewrite the properties.conf
+        file, saving the properties back to the file.
+
+5-13. Uncompressing Compressed Files
+    Problem: You have to uncompress and extract files from a compressed .zip file.
+    Solution: Using the Java.util.zip package, you can open a .zip file and loop through its entries. If we find a
+        directory entry, we create the directory. If we find a file entry, we write the decompressed file to the file
+        .unzipped

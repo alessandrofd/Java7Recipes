@@ -1,0 +1,33 @@
+<project default="test" name="Chapter9Project" basedir=".">
+    <property name="src" location="." />
+    <property name="build" location="build" />
+    <property name="src.tests" location="." />
+    <property name="reports.tests" location="report" />
+
+    <path id="build.path">
+        <fileset dir="D:/Users/alessandro.dantas/JavaLibs">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <target name="build">
+        <mkdir dir="${build}" />
+        <javac srcdir="${src}" destdir="${build}">
+            <classpath refid="build.path" />
+        </javac>
+    </target>
+
+    <target name="test" depends="build">
+        <mkdir dir="${reports.tests}" />
+        <junit fork="yes" printsummary="yes" haltonfailure="yes">
+            <classpath refid="build.path" />
+            <formatter type="plain" />
+            <batchtest fork="yes" todir="${reports.tests}">
+                <fileset dir="${src.tests}">
+                    <include name="**/*Test.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+</project>

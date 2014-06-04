@@ -1,0 +1,80 @@
+3-1. Round Double and Float Values to Integers
+    Problem: You need to have the ability to round floating-point numbers or doubles within you application to an Integer
+        value.
+    Solution: Use one of the java.lang.Math round() methods to round the number into the format you require.
+
+3-2. Formatting Double and Long Decimal Values
+    Problem: You need to have the ability to format double and long numbers within your application.
+    Solution: Use de DecimalFormat class to format and round the value to the precision your application requires.
+
+3-3. Comparing Int Values
+    Problem: You need to compare two or more int values
+    Solution #1: Use the comparison operators to compare Integer values against one another.
+    Solution #2: Use the Integer.compare(int,int) method to compare two int values numerically.
+
+3-4. Comparing Floating-Point Numbers
+    Problem: You need to compare two or more floating-point values in an application.
+    Solution #1: Use the Float object's compareTo() method to perform a comparison between one Float against another.
+    Solution #2: Use the Float class compare() method to perform the comparison.
+
+3-5. Performing Calculations with Complex Numbers
+    Problem: You have a requirement to perform calculations with complex numbers in your Java application.
+    Solution: Download the Apache Commons Math library and make use of the Complex class.
+
+3-6. Formatting and Parsing Complex Numbers
+    Problem: You have a requirement to format complex numbers in your Java application.
+    Solution: Download the Apache Commons Math library and make use of the ComplexFormat class. This class will allow
+        you to properly format the complex number and convert it to a String that represents both the real and the
+        imaginary parts.
+
+3-7. Calculating Monetary Values
+    Problem: You are developing an application that requires the use of monetary values and you are not sure which data
+        type to use for storing and calculating currency values.
+    Solution: Use the BigDecimal data type to perform calculation on all monetary values. Format the resulting calculations
+        using the NumberFormat.getCurrencyInstance() helper method.
+
+3-8. Randomly Generating Values
+    Problem: An application that you are developing requires the use of randomly generated values.
+    Solution #1: Use the java.util.Random class to help generate the random numbers. The Random class was developed for
+        the purpose of generating random numbers for a handful of the Java numeric types.
+    Solution #2: Make use of the Math.random() method. This will produce a double value that is greater than 0.0, but
+        less than 1.0.
+
+3-9. Obtaining the Current Date
+    Problem: You are developing an application for which you would like to obtain the current date to display on a form.
+    Solution #1: If you only need to obtain the current date without going into calendar details, use the java.util.Date
+        class to generate a new Date object. Doing so will cause the new Date object to be equal to the current system
+        date.
+    Solution #2: If you need to be more precise regarding the calendar, use the java.util.Calendar class. Although
+        working with the Calendar class will make your code longer, you can be much more precise.
+
+3-10. Adding and Subtracting Days, Months, and Years
+    Problem: You would like to perform date calculations within your application.
+    Solution: Use the java.util.Calendar class to perform date calculations. This class allows you to obtain the Integer
+        representation for a given month, day, or year of a specified date. These Integer values can be used to perform
+        calculations to obtain the desired result.
+
+3-11. Finding the Difference Between Two Dates
+    Problem: You need to determine how many hours, days, weeks, months, or years have elapsed between two dates.
+    Solution: Use the java.util.concurrent.TimeUnit enum to perform calculations between given dates. Using this enum,
+        you can obtain the Integer values for days, hours, microseconds, milliseconds, minutes, nanoseconds, and seconds.
+        Doing so will allow you to perform the necessary calculations.
+
+3-12. Formatting Dates for Display
+    Problem: Dates need to be displayed by your application using a specific format. You would like to define that format
+        once and apply it to all dates that need to be displayed.
+    Solution: Use the java.util.Calendar class to obtain the date that you require and then format that date using the
+        java.text.SimpleDateFormat class.
+
+3-13. Comparing Dates
+    Problem: You need to determine whether one date is equal or greater than another date.
+    Solution: Use the comparative methods that are par of java.util.Calendar to determine which date is greater.
+
+3-14. Writing Readable Numeric Literals
+    Problem: Some of the numeric literals in your application are rather long and you would like to make it easier to
+        tell how large a number is at a glance.
+    Solution: Use underscores in place of commas or decimals in larger numbers in order to make them more readable.
+
+3-15. Declaring Binary Literals
+    Problem: You are working on an application that requires the declaration of binary numbers.
+    Solution: Make use of binary literals to make your code readable.

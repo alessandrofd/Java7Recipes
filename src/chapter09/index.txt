@@ -1,0 +1,23 @@
+Chapter 9 - Debugging and Unit Testing
+
+Debugging is a big part of software development. To effectively debug, you must be able to "think" like a computer and
+dive into the code, deconstructing every step that lead to the logic error that you're working to resolve. In the
+beginning of computer programming, there weren't a lot of tools to help in debugging. Mostly, debugging involved taking
+a look at you code and spotting inconsistencies; then resubmit the code to be compiled again. Today, every IDE offers
+the ability of using breakpoints and inspecting memory variables, making it much easier to debug. Outside the IDE there
+are other tools that help in daily debugging, building and testing of your project; and these tools ensure that your
+code is being continually tested for errors introduced when programming. In this chapter, you explore the different
+tools that will help you debug faster, and burn less of that midnight oil.
+
+9-1. Understanding Exceptions
+    Problem: You caught and logged an Exception (as described in solution 6-1), and need to understand what happened.
+    Solution: Analyze the Exception's printStackTrace() method.
+
+9-2. Locking Down Behavior of Your Classes
+    Problem: You need to lock down the behavior of you class and want to create unit tests that verify that behavior in
+        your application.
+    Solution: Use JUnit to create unit tests that verify behavior in your classes.
+
+9-3. Scripting Your Unit Tests
+    Problem: You need to automatically run your unit tests.
+    Solution: Use and configure JUnit + Ant.

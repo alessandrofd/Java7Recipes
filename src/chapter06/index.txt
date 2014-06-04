@@ -1,0 +1,118 @@
+Chapter 6 - Exceptions and Logging
+
+Exceptions are a way of describing exceptional circumstances within a program. They are a way of signaling that
+something unexpected (exceptional) has happened. For that reason, exceptions are efficient at interrupting the current
+flow of the program and signaling that there is something that requires attentions. As such, programs that judiciously
+use exceptions benefit from a better control flow and become more robust. Even so, using exceptions indiscriminately
+can cause performance degradation.
+
+Within Java, exceptions are said to be "thrown" and "caught". Throwing an exception involves telling the code that you
+have encountered an exception an involves using the throw keyword to signal the JVM to find any code capable of handling
+this exceptional circumstance within the current stack. Catching an exception involves telling the compiler which
+exceptions you can handle, and on which part of the code you want to monitor for these exceptions occurring. This is
+denoted by the try/catch Java syntax (described in recipe 6-1).
+
+All exceptions inherit from Throwable. Classes that are inherited from Throwable are allowed to be defined in the catch
+clause of a try/catch statement. The Error classes are primarily used by the JVM to denote serious and/or fatal errors.
+According to the Java documentation, applications are not expected to catch Error exceptions as they considered fatal
+(think computer being of fire). The bulk of exceptions within a Java program will be inherited from the Exception class.
+
+An important aspect of exceptions is that within the JVM there are two types of exceptions: checked and unchecked.
+Checked exceptions are enforced by methods. In the method signature, one can specify what kind of exceptions the method
+can throw. This requires any caller of this method to create a try/catch block that handles the exceptions that the
+method declared on its signature. Unchecked exceptions don't require such as stringent convention and are free to be
+thrown anywhere without enforcing the implementations of a try/catch block. Even so, unchecked exceptions (as described
+on recipe 6-6) are usually discouraged because they can lead to threads unraveling (if nothing catches the exception) and
+poor visibility of problems. Classes that inherit from RuntimeException are considered unchecked exceptions, whereas
+classes that inherit directly from Exception are considered to be checked exceptions.
+
+Be aware that the act of throwing exceptions is expensive (compared with other language construct alternatives), and
+as such throwing exceptions makes a poor substitute for control flow. For example, you shouldn't throw an exception to
+indicate an expected result of a method call (say a method like isUsernameValid(String userName). It is a better
+practice to call the method and return a boolean with the result than trying to throw an InvalidUsernameException to
+indicate failure.
+
+Logging within an application helps understand what is happening without the need for debugging the code. This is
+specially true in production environments where there isn't the opportunity for live debugging. In that sense, logging
+collects clues on what is happening (most likely what went wrong) and helps with troubleshooting production problems. A
+solid logging framework with a sound logging methodology will save many late-nights at work wondering "what happened?"
+
+Logging for Java is very mature. There are many open-source projects that are widely accepted as the de fact standard
+for logging. In our recipes we will use Java's Logging framework and the Simple Logging Façade for Java (SLF4J). Both of
+these projects together create a good-enough solution for most logging needs.
+
+
+6-1. Catching Exceptions
+    Problem: You need to catch an exception from code.
+    Solution: Using the built-in try/catch language construct allows you to catch exceptions. In this example, there is
+        a functions that returns true/false if a string is shorter than five characters long. If the string passed in is
+        null, a NullPointerException is thrown by the length() method and caught by the catch block.
+    Source Code: Recipe6_1.java
+
+6-2. Guaranteeing that Cleanup Code Runs, No Matter What
+    Problem: You want to write code that executes when control leaves a code segment, no matter whether that control
+        leaves due to an error being thrown or the segment ending normally. For example, you have acquired a lock and
+        want to be sure that you are releasing it correctly. You want to release the lock in the event of an error and
+        also in the event of no error.
+    Solution: Use a try/catch/finally block to properly release locks and other resources that you acquire in a code
+        segment. In the example, the finally keyword specifies a code block that will always execute, regardless of
+        whether an exception was thrown in the try block. Within the finally block, the lock is released by calling
+        lock.unlock().
+    Source Code: Recipe6_2.java
+
+6-3. Throwing Exceptions
+    Problem: You need to account for an exceptional problem by throwing an exception from within your code. You don't
+        want the execution to continue on the current code path. You want to abort the execution of the current code
+        path by throwing the exception.
+    Solution: Using the throw keyword, one can signal the current thread to look for try/catch blocks (at the current
+        level and up the stack) that can process the thrown exception. In our example, the callSomeMethodThatMightThrow
+        throws an exception if the parameter passed in is null.
+
+6-4. Catch Multiple Exceptions
+    Problem: You want to catch multiple exceptions that might happen within a try block
+    Solution #1: By using different catch clauses (ordered from the most specific to the most general), you can catch
+        multiple exceptions.
+    Solution #2: If the code for the different exceptions is the same, in Java 7 you can use the | operator for catching
+        multiple exceptions (known as Multi-catching in Java 7).
+
+6-5. Catching the Uncaught Exceptions
+    Problem: You want to know when a thread is being terminated because of an uncaught exception such as a
+        NullPointerException.
+    Solution #1: When creating a Java thread, sometime you may want to catch not only checked exceptions but any type of
+        exceptions, at least to properly log them, or "keep going" and avoid termination of the executing thread. To
+        that effect, Java allows you to register an ExceptionHandler() either per thread or globally.
+    Solution #2: Use the thread's own UncaughtExceptionHandler. Any exception that happens within the thread and that
+        has not been caught will be handled by the uncaughtException() method of the UncaughExceptionHandler.
+
+6-6. Managing Resources with try/catch Blocks
+    Problem: You need to make sure that if an exception is thrown, the resources that are being used in the try/catch
+        block are released.
+    Solution: By using the new Java 7 Automatic Resource Management (ARM) feature, you can specify a try-with-resources
+        block.
+
+6-7. Creating an Exception Class
+    Problem: You need to create a new type of exception.
+    Solution #1: By extending RuntimeException, you can create exceptions that are not required to be checked, but
+        instead can happen at any time.
+    Solution #2: By extending Exception, you create a checked exception that needs either to be caught or rethrown up
+        the stack.
+
+6-8. Rethrowing the caught exception.
+    Problem: You need to rethrow the same exception type as you caught.
+    Solution: Now you can just throw the exception from a catch block, and it will rethrow it on the same type as it was
+        caught.
+
+6-9. Logging Events in your Application
+    Problem: You like to start logging events, debug messages, and so on in your application.
+    Solution: Use SLF4J, along with the Java Logging API to implement you logging solution.
+
+6-10. Rotating and Purging Logs
+    Problem: You have started to log information, but the information logged keeps growing out of control. You would
+        like to keep the last 250KB worth of log entries in your log files.
+    Solution: Use SLF4J with java.util.Logging to configure rolling logs. In this recipe, we get the logger named
+        recipeLogger and log many times into this logger. The output will produce rolled log files with the most recent
+        logged information in the importantLog0.log file.
+
+6.11. Logging Exceptions
+    Problem: You want to be able to record exceptions in your log file.
+    Solution: By using SLF4J and try/catch blocks you can log exceptions in your log file.
